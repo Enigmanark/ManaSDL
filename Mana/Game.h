@@ -26,6 +26,8 @@ public:
 
 	bool IsRunning() {return m_running; }
 
+	SDL_Renderer* GetRenderer();
+
 private:
 
 	Game();

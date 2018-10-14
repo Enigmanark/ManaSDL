@@ -72,3 +72,7 @@ void Game::Clean() {
 	SDL_DestroyRenderer(m_renderer);
 	SDL_Quit();
 }
+
+SDL_Renderer* Game::GetRenderer() {
+	return m_renderer;
+}

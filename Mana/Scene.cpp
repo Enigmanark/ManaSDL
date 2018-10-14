@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "Game.h"
 #include <vector>
 Entity Scene::CreateEntity(std::string p_id) {
 	Entity e = Entity(p_id);
@@ -20,5 +21,13 @@ std::vector<Entity> Scene::GetEntities() {
 }
 
 void Scene::Update() {
+	for (int i = 0; i < m_entities.size(); i++) {
+		m_entities[i].Update();
+	}
+}
 
+void Scene::Draw() {
+	for (int i = 0; i < m_entities.size(); i++) {
+		m_entities[i].Draw(Game::Instance()->GetRenderer());
+	}
 }
