@@ -1,18 +1,14 @@
 #include "Game.h"
 
-Game* game;
-
 int main() {
-	game = new Game();
+	Game::Instance()->Init("Mana", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
-	game->Init("Mana", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
-
-	while (game->IsRunning()) {
-		game->HandleEvents();
-		game->Update();
-		game->Render();
+	while (Game::Instance()->IsRunning()) {
+		Game::Instance()->HandleEvents();
+		Game::Instance()->Update();
+		Game::Instance()->Render();
 	}
 
-	game->Clean();
+	Game::Instance()->Clean();
 	return 0;
 }

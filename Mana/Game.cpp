@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 
+Game* Game::s_Instance = 0;
+
 bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "SDL initialization successful";

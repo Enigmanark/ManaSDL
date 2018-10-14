@@ -3,11 +3,19 @@
 #ifndef __Game__
 #define __Game__
 
+typedef Game TheGame;
+
 class Game {
 
 public:
-	Game();
-	~Game();
+
+	static Game* Instance() {
+		if (s_Instance == 0) {
+			s_Instance = new Game();
+			return s_Instance;
+		}
+		else return s_Instance;
+	}
 
 	bool Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
@@ -19,6 +27,12 @@ public:
 	bool IsRunning() {return m_running; }
 
 private:
+
+	Game();
+	~Game();
+
+	static Game* s_Instance;
+
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 
