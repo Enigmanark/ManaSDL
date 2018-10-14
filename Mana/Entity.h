@@ -20,7 +20,7 @@ public:
 	void SetY(float y);
 	void SetPosition(float x, float y);
 
-private:
+protected:
 	std::string m_id;
 	std::string m_textureId;
 
