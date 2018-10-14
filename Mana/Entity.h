@@ -7,12 +7,12 @@
 class Entity {
 
 public:
-
 	Entity();
+	Entity(std::string p_id);
 	~Entity();
 
-
-	void Load(std::string p_id);
+	std::string GetId();
+	void Load(std::string p_textureId);
 	void Update();
 	void Draw(SDL_Renderer* p_renderer);
 	void Clean();
@@ -22,6 +22,7 @@ public:
 
 private:
 	std::string m_id;
+	std::string m_textureId;
 
 	float m_x;
 	float m_y;

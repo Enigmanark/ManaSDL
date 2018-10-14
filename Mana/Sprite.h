@@ -9,15 +9,16 @@ class Sprite : public Entity {
 	
 public:
 
-	Sprite();
+	Sprite(std::string p_id);
 	~Sprite();
 
-	void Load(std::string p_id);
+	void Load(std::string p_textureId);
 	void Draw(SDL_Renderer* p_renderer);
 
 protected:
 
 	std::string m_id;
+	std::string m_textureId;
 
 };
 

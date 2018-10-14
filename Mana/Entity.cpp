@@ -1,7 +1,15 @@
 #include "Entity.h"
 
-void Entity::Load(std::string p_id) {
+Entity::Entity(std::string p_id) {
 	m_id = p_id;
+}
+
+std::string GetId() {
+	return m_id;
+}
+
+void Entity::Load(std::string p_textureId) {
+	m_textureId = p_textureId;
 }
 
 void Entity::Draw(SDL_Renderer* p_renderer) {
