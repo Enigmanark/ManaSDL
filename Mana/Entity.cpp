@@ -4,7 +4,7 @@ Entity::Entity(std::string p_id) {
 	m_id = p_id;
 }
 
-std::string GetId() {
+std::string Entity::GetId() {
 	return m_id;
 }
 

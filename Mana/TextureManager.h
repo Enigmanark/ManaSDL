@@ -5,8 +5,6 @@
 #ifndef __TextureManager__
 #define __TextureManager__
 
-typedef TextureManager TheTextureManager;
-
 class TextureManager {
 
 public:
@@ -29,5 +27,7 @@ private:
 	static TextureManager* s_Instance;
 	std::map<std::string, SDL_Texture*> m_textureMap;
 };
+
+typedef TextureManager TheTextureManager;
 
 #endif // !__TextureManager__

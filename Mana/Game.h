@@ -3,8 +3,6 @@
 #ifndef __Game__
 #define __Game__
 
-typedef Game TheGame;
-
 class Game {
 
 public:
@@ -41,6 +39,7 @@ private:
 	bool m_running;
 };
 
+typedef Game TheGame;
 
 #endif // !__Game__
 
