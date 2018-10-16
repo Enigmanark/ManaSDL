@@ -17,6 +17,7 @@ public:
 		else return s_Instance;
 	}
 
+	void ClearFromMap(std::string s_id);
 	bool Load(std::string fileName, std::string id, SDL_Renderer* pRenderer);
 	void Draw(std::string id, int x, int y, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void DrawRegion(std::string id, int p_srcX, int p_srcY, int p_Width, int p_Height, int p_destX, int p_destY, SDL_RendererFlip flip = SDL_FLIP_NONE);

@@ -57,3 +57,7 @@ void TextureManager::DrawRegion(std::string p_id, int p_srcX, int p_srcY, int p_
 
 	SDL_RenderCopyEx(TheGame::Instance()->GetRenderer(), m_textureMap[p_id], &t_srcRect, &t_destRect, 0, 0, p_flip);
 }
+
+void TextureManager::ClearFromMap(std::string s_id) {
+	m_textureMap.erase(s_id);
+}
