@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL.h"
 #ifndef __InputHandler__
 #define __InputHandler__
 
@@ -8,7 +9,8 @@ public:
 
 	static InputHandler* Instance() {
 		if (m_Instance == 0) {
-			return new InputHandler();
+			m_Instance = new InputHandler();
+			return m_Instance;
 		}
 		else return m_Instance;
 	}

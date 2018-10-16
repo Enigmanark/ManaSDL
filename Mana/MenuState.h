@@ -13,7 +13,7 @@ public:
 	virtual bool OnEnter();
 	virtual bool OnExit();
 
-	std::string GetStateID() { return m_MenuID; }
+	virtual std::string GetStateID() { return m_MenuID; }
 
 private:
 

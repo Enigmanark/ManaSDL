@@ -15,7 +15,7 @@ bool InputHandler::IsKeyDown(SDL_Scancode p_key) {
 void InputHandler::Update() {
 	m_keyStates = SDL_GetKeyboardState(0);
 	SDL_Event event;
-	if (SDL_PollEvent(&event)) {
+	while (SDL_PollEvent(&event)) {
 		switch (event.type) {
 
 		case SDL_QUIT:

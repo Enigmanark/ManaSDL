@@ -1,6 +1,8 @@
 #include "Game.h"
 #include <iostream>
 #include "InputHandler.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 TheGame* Game::s_Instance = 0;
 
@@ -29,9 +31,14 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 				//Init systems now
 				if (InitSystems()) {
 					std::cout << "Systems initialized successfully" << std::endl;
-					return true;
+					//Init first state
+					if (InitState()) {
+						std::cout << "State initiailized successfully" << std::endl;
+						return true;
+					}
 				}
-				else return false;
+				
+				return false;
 				
 			}
 			else {
@@ -55,6 +62,20 @@ bool Game::InitSystems() {
 	m_running = true;
 	m_gameStateMachine = new GameStateMachine();
 	return true;
+}
+
+bool Game::InitState() {
+	std::cout << "Setting initial state.." << std::endl;
+	m_gameStateMachine->ChangeState(new MenuState());
+	return true;
+}
+
+void Game::HandleEvents() {
+	TheInputHandler::Instance()->Update();
+
+	if (TheInputHandler::Instance()->IsKeyDown(SDL_SCANCODE_RETURN)) {
+		m_gameStateMachine->ChangeState(new PlayState());
+	}
 }
 
 void Game::Render() {
@@ -82,5 +103,5 @@ SDL_Renderer* Game::GetRenderer() {
 }
 
 void Game::Update() {
-	TheInputHandler::Instance()->Update();
+	
 }

@@ -20,6 +20,7 @@ public:
 
 	void Render();
 	void Update();
+	void HandleEvents();
 	void Clean();
 	void Quit();
 
@@ -42,6 +43,7 @@ private:
 	GameStateMachine* m_gameStateMachine;
 
 	bool InitSystems();
+	bool InitState();
 };
 
 typedef Game TheGame;
