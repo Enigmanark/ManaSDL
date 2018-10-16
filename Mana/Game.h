@@ -28,8 +28,8 @@ public:
 
 private:
 
-	Game();
-	~Game();
+	Game() {};
+	~Game() {};
 
 	static Game* s_Instance;
 

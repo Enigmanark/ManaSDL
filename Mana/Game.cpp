@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-Game* Game::s_Instance = 0;
+TheGame* Game::s_Instance = 0;
 
 bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
@@ -25,6 +25,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 			if (m_renderer != 0) {
 				SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
 				std::cout << "Renderer created successfully";
+				m_running = true;
 				return true;
 			}
 			else {
@@ -75,4 +76,8 @@ void Game::Clean() {
 
 SDL_Renderer* Game::GetRenderer() {
 	return m_renderer;
+}
+
+void Game::Update() {
+
 }
