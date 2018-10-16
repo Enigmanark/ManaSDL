@@ -16,10 +16,14 @@ public:
 	void Update();
 	void Clean();
 
+	bool IsKeyDown(SDL_Scancode p_key);
+
 private:
 
 	InputHandler() {};
-	~InputHandler() { delete m_Instance; };
+	~InputHandler();
+
+	const Uint8* m_keyStates;
 
 	static InputHandler* m_Instance;
 };
