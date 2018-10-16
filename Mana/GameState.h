@@ -19,7 +19,7 @@ public:
 
 protected:
 
-	std::vector<GameObject> m_gameObjects;
+	std::vector<GameObject*> m_gameObjects;
 
 };
 

@@ -1,10 +1,15 @@
 #include "TextureManager.h"
 #include "SDL_image.h"
 #include "Game.h"
+#include <iostream>
 
 TextureManager* TheTextureManager::s_Instance = 0;
 
 bool TextureManager::Load(std::string p_fileName, std::string p_stringId, SDL_Renderer* p_renderer) {
+	if (m_textureMap[p_stringId]) {
+		std::cout << "Texture already exists with that ID, not adding it twice" << std::endl;
+		return;
+	}
 	SDL_Surface* t_surface = IMG_Load(p_fileName.c_str());
 
 	if (t_surface == 0) {
@@ -22,6 +27,12 @@ bool TextureManager::Load(std::string p_fileName, std::string p_stringId, SDL_Re
 	else {
 		return false;
 	}
+}
+
+Vector2D TextureManager::GetTextureSize(std::string p_id) {
+	SDL_Rect rect;
+	SDL_QueryTexture(m_textureMap[p_id], NULL, NULL, &rect.w, &rect.h);
+	return Vector2D((float)rect.w, (float)rect.h);
 }
 
 void TextureManager::Draw(std::string p_id, int p_x, int p_y, SDL_RendererFlip p_flip) {

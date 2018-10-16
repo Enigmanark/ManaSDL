@@ -12,8 +12,8 @@ public:
 	Sprite(std::string p_id);
 	~Sprite();
 	virtual void Update();
-	void Load(std::string p_textureId);
-	void LoadSpriteSheet(std::string p_textureId, int p_width, int p_height, int p_frameX, int p_frameY);
+	void Load(std::string p_filePath, std::string p_textureId);
+	void LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_width, int p_height, int p_frameX, int p_frameY);
 	virtual void Draw();
 	virtual void DrawRegion();
 	virtual void Clean();

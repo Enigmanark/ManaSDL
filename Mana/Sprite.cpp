@@ -1,5 +1,6 @@
 #include "Sprite.h"
 #include "TextureManager.h"
+#include "Game.h"
 
 Sprite::~Sprite() {
 	delete m_position;
@@ -10,14 +11,17 @@ Sprite::Sprite(std::string p_id) {
 	m_id = p_id;
 }
 
-void Sprite::Load(std::string p_textureId) {
+void Sprite::Load(std::string p_filePath, std::string p_textureId) {
 	m_textureId = p_textureId;
+	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
 }
 
-void Sprite::LoadSpriteSheet(std::string p_textureId, int p_width, int p_height, int p_frameX, int p_frameY) {
+void Sprite::LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_frameX, int p_frameY) {
 	m_textureId = p_textureId;
-	m_frameHeight = p_height;
-	m_frameWidth = p_width;
+	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
+	Vector2D size = TheTextureManager::Instance()->GetTextureSize(p_textureId);
+	m_frameHeight = size.GetX() / p_xFrames;
+	m_frameWidth = size.GetY / p_frameY;
 	m_currentFrameX = p_frameX;
 	m_currentFrameY = p_frameY;
 }
@@ -27,7 +31,7 @@ void Sprite::Update() {
 }
 
 void Sprite::Clean() {
-	
+	TheTextureManager::	
 }
 
 void Sprite::Draw() {

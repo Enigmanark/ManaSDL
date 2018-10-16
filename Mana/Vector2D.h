@@ -6,7 +6,7 @@ class Vector2D {
 
 public:
 
-	Vector2D() {};
+	Vector2D(float p_x, float p_y) { x = p_x; y = p_y; };
 	~Vector2D() {};
 
 	void SetX(float x);
