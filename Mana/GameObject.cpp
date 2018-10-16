@@ -10,8 +10,9 @@ GameObject::~GameObject() {
 	Clean();
 }
 
-GameObject::GameObject(std::string p_id) {
+GameObject::GameObject(std::string p_id, std::string p_parentId) {
 	m_id = p_id;
+	m_parentId = p_parentId;
 	m_position = new Vector2D(0, 0);
 }
 
@@ -35,7 +36,9 @@ void GameObject::Update() {
 }
 
 void GameObject::Clean() {
-	TheTextureManager::Instance()->ClearFromMap(m_textureId);
+	if (!TheGame::Instance()->GetStateMachine()->GetCurrentState()->GameObjectHasTexture(m_textureId)) {
+		TheTextureManager::Instance()->ClearFromMap(m_textureId);
+	}
 	delete m_position;
 	delete m_bounds;
 }

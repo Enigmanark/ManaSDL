@@ -16,9 +16,16 @@ public:
 	virtual bool OnExit() = 0;
 
 	virtual std::string GetStateID() = 0;
-
+	
+	bool GameObjectHasTexture(std::string p_id) {
+		for (size_t i = 0; i < m_gameObjects.size(); i++) {
+			if (m_gameObjects[i]->GetTextureId() == p_id) {
+				return true;
+			}
+		}
+		return false;
+	};
 protected:
-
 	std::vector<GameObject*> m_gameObjects;
 
 };
