@@ -10,5 +10,17 @@ void Sprite::Load(std::string p_textureId) {
 }
 
 void Sprite::Draw(SDL_Renderer* p_renderer) {
-	TextureManager::Instance()->Draw(m_id, m_x, m_y, p_renderer);
+	TextureManager::Instance()->Draw(m_id, GetPosition()->GetX(), GetPosition()->GetY());
+}
+
+void Sprite::SetBounds(int p_x, int p_y, int p_width, int p_height) {
+	m_bounds = new SDL_Rect();
+	m_bounds->x = p_x;
+	m_bounds->y = p_y;
+	m_bounds->w = p_width;
+	m_bounds->h = p_height;
+}
+
+SDL_Rect* Sprite::GetBounds() {
+	return m_bounds;
 }
