@@ -8,6 +8,11 @@ class GameStateMachine {
 	
 public:
 
+	GameStateMachine() {};
+	~GameStateMachine() {
+		m_gameStates.clear();
+	}
+
 	void PushState(GameState* p_state);
 	void ChangeState(GameState* p_state);
 	void PopState();

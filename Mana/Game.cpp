@@ -25,8 +25,13 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 			if (m_renderer != 0) {
 				SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
 				std::cout << "Renderer created successfully";
-				m_running = true;
-				return true;
+				//Init systems now
+				if (InitSystems()) {
+					std::cout << "Systems initialized successfully" << std::endl;
+					return true;
+				}
+				else return false;
+				
 			}
 			else {
 				std::cout << "Failed to create renderer";
@@ -42,6 +47,13 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 		std::cout << "SDL Failed to initialize";
 		return false;
 	}
+}
+
+bool Game::InitSystems() {
+	std::cout << "Initialising Systems.." << std::endl;
+	m_running = true;
+	m_gameStateMachine = new GameStateMachine();
+	return true;
 }
 
 void Game::Render() {
@@ -71,6 +83,7 @@ void Game::Clean() {
 	std::cout << "Cleaning up";
 	SDL_DestroyWindow(m_window);
 	SDL_DestroyRenderer(m_renderer);
+	delete m_gameStateMachine;
 	SDL_Quit();
 }
 

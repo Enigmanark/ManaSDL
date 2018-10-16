@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "GameStateMachine.h"
 #ifndef __Game__
 #define __Game__
 
@@ -29,7 +30,7 @@ public:
 private:
 
 	Game() {};
-	~Game() {};
+	~Game() { delete s_Instance; }
 
 	static Game* s_Instance;
 
@@ -37,6 +38,10 @@ private:
 	SDL_Renderer* m_renderer;
 
 	bool m_running;
+
+	GameStateMachine* m_gameStateMachine;
+
+	bool InitSystems();
 };
 
 typedef Game TheGame;
