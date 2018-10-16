@@ -16,14 +16,32 @@ void InputHandler::Update() {
 	m_keyStates = SDL_GetKeyboardState(0);
 	SDL_Event event;
 	while (SDL_PollEvent(&event)) {
-		switch (event.type) {
-
-		case SDL_QUIT:
+		if(event.type == SDL_QUIT) {
 			TheGame::Instance()->Quit();
-			break;
+		}
 
-		default:
-			break;
+		else if (event.type == SDL_MOUSEBUTTONDOWN) {
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				m_mouseButtonStates[LEFT] = true;
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE) {
+				m_mouseButtonStates[MIDDLE] = true;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT) {
+				m_mouseButtonStates[RIGHT] = true;
+			}
+		}
+
+		else if (event.type == SDL_MOUSEBUTTONUP) {
+			if (event.button.button == SDL_BUTTON_LEFT) {
+				m_mouseButtonStates[LEFT] = false;
+			}
+			if (event.button.button == SDL_BUTTON_MIDDLE) {
+				m_mouseButtonStates[MIDDLE] = false;
+			}
+			if (event.button.button == SDL_BUTTON_RIGHT) {
+				m_mouseButtonStates[RIGHT] = false;
+			}
 		}
 	}
 }
