@@ -13,10 +13,10 @@ public:
 	~GameObject();
 
 	std::string GetId();
-	void Load(std::string p_textureId);
-	void Update();
-	void Draw(SDL_Renderer* p_renderer);
-	void Clean();
+	virtual void Load(std::string p_textureId);
+	virtual void Update();
+	virtual void Draw(SDL_Renderer* p_renderer);
+	virtual void Clean();
 	Vector2D* GetPosition();
 
 protected:

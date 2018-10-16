@@ -11,11 +11,13 @@ public:
 
 	Sprite(std::string p_id);
 	~Sprite();
-
-	void Load(std::string p_textureId);
-	void Draw(SDL_Renderer* p_renderer);
+	virtual void Update();
+	virtual void Load(std::string p_textureId);
+	virtual void Draw(SDL_Renderer* p_renderer);
+	virtual void Clean();
 	void SetBounds(int p_x, int p_y, int p_width, int p_height);
 	SDL_Rect* GetBounds();
+	bool DoBoundsCollide(SDL_Rect* p_rect);
 
 protected:
 
