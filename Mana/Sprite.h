@@ -1,11 +1,11 @@
 #pragma once
 #include <iostream>
 #include "SDL.h"
-#include "Entity.h"
+#include "GameObject.h"
 #ifndef __Sprite__
 #define __Sprite__
 
-class Sprite : public Entity {
+class Sprite : public GameObject {
 	
 public:
 

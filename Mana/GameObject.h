@@ -1,31 +1,29 @@
 #pragma once
 #include <iostream>
 #include "SDL.h"
-#ifndef __Entity__
-#define __Entity__
+#include "Vector2D.h"
+#ifndef __GameObject__
+#define __GameObject__
 
-class Entity {
+class GameObject {
 
 public:
-	Entity();
-	Entity(std::string p_id);
-	~Entity();
+	GameObject();
+	GameObject(std::string p_id);
+	~GameObject();
 
 	std::string GetId();
 	void Load(std::string p_textureId);
 	void Update();
 	void Draw(SDL_Renderer* p_renderer);
 	void Clean();
-	void SetX(float x);
-	void SetY(float y);
-	void SetPosition(float x, float y);
+	Vector2D* GetPosition();
 
 protected:
 	std::string m_id;
 	std::string m_textureId;
-
-	float m_x;
-	float m_y;
+	Vector2D* m_position;
+	
 };
-#endif // !__Entity__
+#endif // !__GameObject__
 
