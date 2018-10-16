@@ -20,6 +20,11 @@ void InputHandler::Update() {
 			TheGame::Instance()->Quit();
 		}
 
+		else if (event.type == SDL_MOUSEMOTION) {
+			m_mousePosition->SetX(event.motion.x);
+			m_mousePosition->SetY(event.motion.y);
+		}
+
 		else if (event.type == SDL_MOUSEBUTTONDOWN) {
 			if (event.button.button == SDL_BUTTON_LEFT) {
 				m_mouseButtonStates[LEFT] = true;
@@ -44,6 +49,14 @@ void InputHandler::Update() {
 			}
 		}
 	}
+}
+
+Vector2D* InputHandler::GetMousePosition() {
+	return m_mousePosition;
+}
+
+bool InputHandler::IsMouseButtonDown(int number) {
+	return m_mouseButtonStates[number];
 }
 
 InputHandler::~InputHandler() {

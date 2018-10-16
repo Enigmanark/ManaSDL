@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include <vector>
+#include "Vector2D.h"
 #ifndef __InputHandler__
 #define __InputHandler__
 
@@ -25,7 +26,9 @@ public:
 	void Update();
 	void Clean();
 
+	Vector2D* GetMousePosition();
 	bool IsKeyDown(SDL_Scancode p_key);
+	bool IsMouseButtonDown(int number);
 
 private:
 
@@ -36,6 +39,7 @@ private:
 	};
 	~InputHandler();
 
+	Vector2D* m_mousePosition;
 	const Uint8* m_keyStates;
 	std::vector<bool> m_mouseButtonStates;
 
