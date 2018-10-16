@@ -12,14 +12,6 @@ void GameObject::Load(std::string p_textureId) {
 	m_textureId = p_textureId;
 }
 
-void GameObject::Draw(SDL_Renderer* p_renderer) {
-
-}
-
-void GameObject::Update() {
-
-}
-
 Vector2D* GameObject::GetPosition() {
 	return m_position;
 }

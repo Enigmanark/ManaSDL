@@ -8,14 +8,14 @@
 class GameObject {
 
 public:
-	GameObject();
+	GameObject() {};
 	GameObject(std::string p_id);
 	~GameObject();
 
 	std::string GetId();
-	virtual void Load(std::string p_textureId);
+	void Load(std::string p_textureId);
 	virtual void Update();
-	virtual void Draw(SDL_Renderer* p_renderer);
+	virtual void Draw();
 	virtual void Clean();
 	Vector2D* GetPosition();
 
