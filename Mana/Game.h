@@ -27,6 +27,7 @@ public:
 	bool IsRunning() {return m_running; }
 
 	SDL_Renderer* GetRenderer();
+	GameStateMachine* GetStateMachine();
 
 private:
 
@@ -42,8 +43,9 @@ private:
 
 	GameStateMachine* m_gameStateMachine;
 
+	GameState* m_initState;
+
 	bool InitSystems();
-	bool InitState();
 };
 
 typedef Game TheGame;

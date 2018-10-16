@@ -13,7 +13,7 @@ public:
 	~Sprite();
 	virtual void Update();
 	void Load(std::string p_filePath, std::string p_textureId);
-	void LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_width, int p_height, int p_frameX, int p_frameY);
+	void LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_startFrameX, int p_startFrameY);
 	virtual void Draw();
 	virtual void DrawRegion();
 	virtual void Clean();

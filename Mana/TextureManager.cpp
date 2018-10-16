@@ -8,7 +8,7 @@ TextureManager* TheTextureManager::s_Instance = 0;
 bool TextureManager::Load(std::string p_fileName, std::string p_stringId, SDL_Renderer* p_renderer) {
 	if (m_textureMap[p_stringId]) {
 		std::cout << "Texture already exists with that ID, not adding it twice" << std::endl;
-		return;
+		return true;
 	}
 	SDL_Surface* t_surface = IMG_Load(p_fileName.c_str());
 

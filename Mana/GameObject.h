@@ -10,7 +10,7 @@ class GameObject {
 public:
 	GameObject() {};
 	GameObject(std::string p_id);
-	~GameObject();
+	~GameObject() { Clean(); }
 
 	std::string GetId();
 	void Load(std::string p_textureId);

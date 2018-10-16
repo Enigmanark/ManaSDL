@@ -3,6 +3,7 @@
 #include "Game.h"
 
 Sprite::~Sprite() {
+	Clean();
 	delete m_position;
 	delete m_bounds;
 }
@@ -16,14 +17,14 @@ void Sprite::Load(std::string p_filePath, std::string p_textureId) {
 	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
 }
 
-void Sprite::LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_frameX, int p_frameY) {
+void Sprite::LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_startFrameX, int p_startFrameY) {
 	m_textureId = p_textureId;
 	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
 	Vector2D size = TheTextureManager::Instance()->GetTextureSize(p_textureId);
 	m_frameHeight = size.GetX() / p_xFrames;
-	m_frameWidth = size.GetY / p_frameY;
-	m_currentFrameX = p_frameX;
-	m_currentFrameY = p_frameY;
+	m_frameWidth = size.GetY() / p_yFrames;
+	m_currentFrameX = p_startFrameX;
+	m_currentFrameY = p_startFrameY;
 }
 
 void Sprite::Update() {
@@ -31,7 +32,8 @@ void Sprite::Update() {
 }
 
 void Sprite::Clean() {
-	TheTextureManager::	
+	TheTextureManager::Instance()->ClearFromMap(m_textureId);
+	
 }
 
 void Sprite::Draw() {
