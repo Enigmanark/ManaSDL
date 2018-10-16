@@ -20,7 +20,6 @@ public:
 
 	void Render();
 	void Update();
-	void HandleEvents();
 	void Clean();
 	void Quit();
 

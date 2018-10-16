@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include "InputHandler.h"
 
 TheGame* Game::s_Instance = 0;
 
@@ -81,5 +82,5 @@ SDL_Renderer* Game::GetRenderer() {
 }
 
 void Game::Update() {
-
+	TheInputHandler::Instance()->Update();
 }
