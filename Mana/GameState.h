@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
+#include "GameObject.h"
 #ifndef __GameState__
 #define __GameState__
 
@@ -14,5 +16,12 @@ public:
 	virtual bool OnExit() = 0;
 
 	virtual std::string GetStateID() = 0;
+
+protected:
+
+	std::vector<GameObject> m_gameObjects;
+
 };
+
+
 #endif // !__GameState__
