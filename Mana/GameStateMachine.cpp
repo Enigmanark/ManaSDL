@@ -1,5 +1,9 @@
 #include "GameStateMachine.h"
 
+GameState* GameStateMachine::GetCurrentState() {
+	return m_gameStates.back();
+}
+
 void GameStateMachine::PushState(GameState* p_state) {
 	m_gameStates.push_back(p_state);
 	m_gameStates.back()->OnEnter();

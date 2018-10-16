@@ -65,5 +65,5 @@ InputHandler::~InputHandler() {
 
 void InputHandler::Clean() {
 	delete m_keyStates;
-
+	delete m_mousePosition;
 }

@@ -13,6 +13,7 @@ public:
 		m_gameStates.clear();
 	}
 
+	GameState* GetCurrentState();
 	void PushState(GameState* p_state);
 	void ChangeState(GameState* p_state);
 	void PopState();

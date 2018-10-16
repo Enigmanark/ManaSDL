@@ -10,6 +10,7 @@ Sprite::~Sprite() {
 
 Sprite::Sprite(std::string p_id) {
 	m_id = p_id;
+	m_position = new Vector2D(0, 0);
 }
 
 void Sprite::Load(std::string p_filePath, std::string p_textureId) {

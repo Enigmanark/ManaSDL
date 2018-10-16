@@ -24,7 +24,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 			m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 
 			if (m_renderer != 0) {
-				SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+				SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 0);
 				std::cout << "Renderer created successfully";
 				//Init systems now
 				if (InitSystems()) {
@@ -59,12 +59,14 @@ bool Game::InitSystems() {
 }
 
 void Game::HandleEvents() {
-	//Do nothing
+	InputHandler::Instance()->Update();
 }
 
 void Game::Render() {
 	//Clear le screen
 	SDL_RenderClear(m_renderer);
+
+	m_gameStateMachine->GetCurrentState()->Render();
 
 	//Present le stuff
 	SDL_RenderPresent(m_renderer);
@@ -91,5 +93,5 @@ SDL_Renderer* Game::GetRenderer() {
 }
 
 void Game::Update() {
-	
+	m_gameStateMachine->GetCurrentState()->Update();
 }

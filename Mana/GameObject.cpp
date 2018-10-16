@@ -8,6 +8,14 @@ std::string GameObject::GetId() {
 	return m_id;
 }
 
+void GameObject::Draw() {
+
+}
+
+void GameObject::Update() {
+
+}
+
 void GameObject::Load(std::string p_textureId) {
 	m_textureId = p_textureId;
 }

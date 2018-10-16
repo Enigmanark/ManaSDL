@@ -34,6 +34,7 @@ private:
 
 	InputHandler() {
 		for (int i = 0; i < 3; i++) {
+			m_mousePosition = new Vector2D(0, 0);
 			m_mouseButtonStates.push_back(false);
 		}
 	};
