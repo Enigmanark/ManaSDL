@@ -64,19 +64,8 @@ void Game::Render() {
 	SDL_RenderPresent(m_renderer);
 }
 
-void Game::HandleEvents() {
-	SDL_Event event;
-	if (SDL_PollEvent(&event)) {
-		switch (event.type) {
-		
-		case SDL_QUIT:
-			m_running = false;
-			break;
-
-		default:
-			break;
-		}
-	}
+void Game::Quit() {
+	m_running = false;
 }
 
 void Game::Clean() {

@@ -22,6 +22,7 @@ public:
 	void Update();
 	void HandleEvents();
 	void Clean();
+	void Quit();
 
 	bool IsRunning() {return m_running; }
 
