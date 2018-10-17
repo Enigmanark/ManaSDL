@@ -9,7 +9,7 @@ class GameObject {
 
 public:
 	GameObject() {};
-	GameObject(std::string p_id, std::string p_parentId);
+	GameObject(std::string p_id);
 	~GameObject();
 
 	std::string GetId() { return m_id; }
@@ -23,9 +23,9 @@ public:
 	virtual void DrawRegion();
 	virtual void Clean();
 
-	Vector2D* GetPosition();
+	void SetPosition(float x, float y);
+	Vector2D GetPosition();
 
-	void SetBounds(int p_x, int p_y, int p_width, int p_height);
 	SDL_Rect* GetBounds();
 	bool DoBoundsCollide(SDL_Rect* p_rect);
 
@@ -33,7 +33,9 @@ public:
 	int GetFrameHeight() { return m_frameHeight; }
 
 protected:
-	std::string m_parentId;
+
+	void Init(std::string p_id);
+
 	std::string m_id;
 	std::string m_textureId;
 	

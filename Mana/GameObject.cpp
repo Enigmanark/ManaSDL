@@ -2,18 +2,32 @@
 #include "TextureManager.h"
 #include "Game.h"
 
-Vector2D* GameObject::GetPosition() {
-	return m_position;
+Vector2D GameObject::GetPosition() {
+	return *m_position;
+}
+
+void GameObject::Init(std::string p_id) {
+	m_id = p_id;
+	m_position = new Vector2D(0, 0);
+	m_bounds = new SDL_Rect();
+}
+
+void GameObject::SetPosition(float p_x, float p_y) {
+	m_position->SetX(p_x);
+	m_position->SetY(p_y);
+
+	m_bounds->x = p_x;
+	m_bounds->y = p_y;
+	m_bounds->w = m_frameWidth;
+	m_bounds->h = m_frameHeight;
 }
 
 GameObject::~GameObject() {
 	Clean();
 }
 
-GameObject::GameObject(std::string p_id, std::string p_parentId) {
-	m_id = p_id;
-	m_parentId = p_parentId;
-	m_position = new Vector2D(0, 0);
+GameObject::GameObject(std::string p_id) {
+	Init(p_id);
 }
 
 void GameObject::Load(std::string p_filePath, std::string p_textureId) {
@@ -44,7 +58,7 @@ void GameObject::Clean() {
 }
 
 void GameObject::Draw() {
-	TheTextureManager::Instance()->Draw(m_id, GetPosition()->GetX(), GetPosition()->GetY());
+	TheTextureManager::Instance()->Draw(m_id, GetPosition().GetX(), GetPosition().GetY());
 }
 
 void GameObject::DrawRegion() {
@@ -53,14 +67,6 @@ void GameObject::DrawRegion() {
 	int t_destX = m_position->GetX();
 	int t_destY = m_position->GetY();
 	TheTextureManager::Instance()->DrawRegion(m_textureId, t_srcX, t_srcY, m_frameWidth, m_frameHeight, t_destX, t_destY);
-}
-
-void GameObject::SetBounds(int p_x, int p_y, int p_width, int p_height) {
-	m_bounds = new SDL_Rect();
-	m_bounds->x = p_x;
-	m_bounds->y = p_y;
-	m_bounds->w = p_width;
-	m_bounds->h = p_height;
 }
 
 SDL_Rect* GameObject::GetBounds() {
