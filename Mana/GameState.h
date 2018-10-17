@@ -9,6 +9,7 @@ class GameState {
 	
 public:
 
+	virtual void Clean() = 0;
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 	
