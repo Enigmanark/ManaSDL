@@ -16,6 +16,9 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 
 		//init le window
 		m_window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+		
+		m_screenWidth = width;
+		m_screenHeight = height;
 
 		if (m_window != 0) {
 			std::cout << "Window created successfully";

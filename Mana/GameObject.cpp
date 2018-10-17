@@ -25,8 +25,8 @@ void GameObject::LoadSpriteSheet(std::string p_filePath, std::string p_textureId
 	m_textureId = p_textureId;
 	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
 	Vector2D size = TheTextureManager::Instance()->GetTextureSize(p_textureId);
-	m_frameHeight = size.GetX() / p_xFrames;
-	m_frameWidth = size.GetY() / p_yFrames;
+	m_frameWidth = size.GetX() / p_xFrames;
+	m_frameHeight = size.GetY() / p_yFrames;
 	m_currentFrameX = p_startFrameX;
 	m_currentFrameY = p_startFrameY;
 }

@@ -57,15 +57,14 @@ void TextureManager::DrawRegion(std::string p_id, int p_srcX, int p_srcY, int p_
 	SDL_Rect t_srcRect;
 	SDL_Rect t_destRect;
 
-	SDL_QueryTexture(m_textureMap[p_id], NULL, NULL, &t_srcRect.w, &t_srcRect.h);
+	//SDL_QueryTexture(m_textureMap[p_id], NULL, NULL, &t_srcRect.w, &t_srcRect.h);
 
 	t_srcRect.x = p_srcX;
 	t_srcRect.y = p_srcY;
-	t_destRect.w = t_srcRect.w;
-	t_destRect.h = t_srcRect.h;
+	t_destRect.w = t_srcRect.w = p_width;
+	t_destRect.h = t_srcRect.h = p_height;
 	t_destRect.x = p_destX;
 	t_destRect.y = p_destY;
-
 	SDL_RenderCopyEx(TheGame::Instance()->GetRenderer(), m_textureMap[p_id], &t_srcRect, &t_destRect, 0, 0, p_flip);
 }
 

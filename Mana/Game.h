@@ -29,10 +29,16 @@ public:
 	SDL_Renderer* GetRenderer();
 	GameStateMachine* GetStateMachine();
 
+	int GetScreenWidth() { return m_screenWidth; }
+	int GetScreenHeight() { return m_screenHeight; }
+
 private:
 
 	Game() {};
 	~Game() { delete s_Instance; }
+
+	int m_screenWidth;
+	int m_screenHeight;
 
 	static Game* s_Instance;
 
