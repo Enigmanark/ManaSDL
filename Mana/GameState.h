@@ -16,6 +16,10 @@ public:
 	virtual bool OnEnter() = 0;
 	virtual bool OnExit() = 0;
 
+	void AddGameObject(GameObject* p_gObject);
+	GameObject* GetGameObjectWithId(std::string p_id);
+	std::vector<GameObject*> GetGameObjects();
+
 	virtual std::string GetStateID() = 0;
 	
 	bool GameObjectHasTexture(std::string p_id) {
