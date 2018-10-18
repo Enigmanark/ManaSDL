@@ -1,19 +1,21 @@
 #include "GameState.h"
 
 void GameState::Update() {
+	//update le game objects
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->Update();
+	}
+	//Update le state components
+	for (size_t i = 0; i < m_stateComponents.size(); i++) {
+		m_stateComponents[i]->Update();
 	}
 }
 
 void GameState::Render() {
+	//Render le game objects
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->Draw();
 	}
-}
-
-void GameState::AddGameObject(GameObject* p_gObject) {
-	m_gameObjects.push_back(p_gObject);
 }
 
 std::vector<GameObject*> GameState::GetGameObjects() {
@@ -27,4 +29,12 @@ GameObject* GameState::GetGameObjectWithId(std::string p_id) {
 		}
 	}
 	return 0;
+}
+
+GameState::~GameState() {
+	Clean();
+}
+
+void GameState::Clean() {
+	m_gameObjects.clear();
 }

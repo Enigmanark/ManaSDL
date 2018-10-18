@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "GameObject.h"
+#include "GameStateComponent.h"
 #ifndef __GameState__
 #define __GameState__
 
@@ -9,15 +10,25 @@ class GameState {
 	
 public:
 
-	virtual void Clean() = 0;
+	~GameState();
+
+	void Clean();
 	void Update();
 	void Render();
 	
 	virtual bool OnEnter() = 0;
 	virtual bool OnExit() = 0;
 
-	void AddGameObject(GameObject* p_gObject);
+	void AddGameStateComponent(GameStateComponent* p_stateComponent) {
+		m_stateComponents.push_back(p_stateComponent);
+	}
+
+	void AddGameObject(GameObject* p_gObject) {
+		m_gameObjects.push_back(p_gObject);
+	}
+
 	GameObject* GetGameObjectWithId(std::string p_id);
+	
 	std::vector<GameObject*> GetGameObjects();
 
 	virtual std::string GetStateID() = 0;
@@ -32,6 +43,7 @@ public:
 	};
 protected:
 	std::vector<GameObject*> m_gameObjects;
+	std::vector<GameStateComponent*> m_stateComponents;
 };
 
 
