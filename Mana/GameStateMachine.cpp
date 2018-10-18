@@ -1,7 +1,10 @@
 #include "GameStateMachine.h"
 
 GameState* GameStateMachine::GetCurrentState() {
-	return m_gameStates.back();
+	if (m_gameStates.size() == 0) {
+		return 0;
+	}
+	else return m_gameStates.back();
 }
 
 void GameStateMachine::PushState(GameState* p_state) {

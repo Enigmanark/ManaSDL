@@ -6,7 +6,7 @@ TheGame* Game::s_Instance = 0;
 
 bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
-		std::cout << "SDL initialization successful";
+		std::cout << "MANA::Log:: SDL initialization successful" << std::endl;
 		
 		int flags = 0;
 		
@@ -21,17 +21,17 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 		m_screenHeight = height;
 
 		if (m_window != 0) {
-			std::cout << "Window created successfully";
+			std::cout << "MANA::Log:: Window created successfully" << std::endl;
 
 			//create le renderer
 			m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 
 			if (m_renderer != 0) {
 				SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 0);
-				std::cout << "Renderer created successfully";
+				std::cout << "MANA::Log:: Renderer created successfully" << std::endl;
 				//Init systems now
 				if (InitSystems()) {
-					std::cout << "Systems initialized successfully" << std::endl;
+					std::cout << "MANA::Log:: Systems initialized successfully" << std::endl;
 					return true;
 				}
 				
@@ -39,23 +39,23 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 				
 			}
 			else {
-				std::cout << "Failed to create renderer";
+				std::cout << "MANA::CRITCAL ERROR:: Failed to create renderer" << std::endl;
 				return false;
 			}
 		}
 		else {
-			std::cout << "Failed to create window";
+			std::cout << "MANA::CRITCAL ERROR:: Failed to create window" << std::endl;
 			return false;
 		}
 	}
 	else {
-		std::cout << "SDL Failed to initialize";
+		std::cout << "MANA::CRITCAL ERROR:: SDL Failed to initialize" << std::endl;
 		return false;
 	}
 }
 
 bool Game::InitSystems() {
-	std::cout << "Initialising Systems.." << std::endl;
+	std::cout << "MANA::Log:: Initialising Systems.." << std::endl;
 	m_running = true;
 	m_gameStateMachine = new GameStateMachine();
 	return true;
@@ -71,7 +71,11 @@ void Game::Render() {
 	SDL_RenderClear(m_renderer);
 
 	//Render le gamestate
-	m_gameStateMachine->GetCurrentState()->Render();
+	GameState* currentState = m_gameStateMachine->GetCurrentState();
+	if (currentState == 0) {
+		std::cout << "MANA:: CRITICAL ERROR:: There is no current state. Not rendering. Quitting..." << std::endl;
+		Quit();
+	}else currentState->Render();
 
 	//Present le stuff
 	SDL_RenderPresent(m_renderer);
@@ -82,7 +86,7 @@ void Game::Quit() {
 }
 
 void Game::Clean() {
-	std::cout << "Cleaning up";
+	std::cout << "Mana::Log:: Cleaning up.." << std::endl;
 	SDL_DestroyWindow(m_window);
 	SDL_DestroyRenderer(m_renderer);
 	delete m_gameStateMachine;
@@ -99,5 +103,9 @@ SDL_Renderer* Game::GetRenderer() {
 
 void Game::Update() {
 	//Update le gamestate
-	m_gameStateMachine->GetCurrentState()->Update();
+	GameState* currentState = m_gameStateMachine->GetCurrentState();
+	if (currentState == 0) {
+		std::cout << "MANA:: CRITICAL ERROR:: There is no current state. Not updating. Quitting..." << std::endl;
+		Quit();
+	} else currentState->Update();
 }
