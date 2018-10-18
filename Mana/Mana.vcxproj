@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="TextureManager.cpp" />

@@ -10,8 +10,8 @@ class GameState {
 public:
 
 	virtual void Clean() = 0;
-	virtual void Update() = 0;
-	virtual void Render() = 0;
+	void Update();
+	void Render();
 	
 	virtual bool OnEnter() = 0;
 	virtual bool OnExit() = 0;
@@ -28,7 +28,6 @@ public:
 	};
 protected:
 	std::vector<GameObject*> m_gameObjects;
-
 };
 
 

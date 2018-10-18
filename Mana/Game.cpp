@@ -62,6 +62,7 @@ bool Game::InitSystems() {
 }
 
 void Game::HandleEvents() {
+	//Handle le input events
 	InputHandler::Instance()->Update();
 }
 
@@ -69,6 +70,7 @@ void Game::Render() {
 	//Clear le screen
 	SDL_RenderClear(m_renderer);
 
+	//Render le gamestate
 	m_gameStateMachine->GetCurrentState()->Render();
 
 	//Present le stuff
@@ -96,5 +98,6 @@ SDL_Renderer* Game::GetRenderer() {
 }
 
 void Game::Update() {
+	//Update le gamestate
 	m_gameStateMachine->GetCurrentState()->Update();
 }
