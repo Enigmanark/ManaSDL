@@ -2,6 +2,11 @@
 #define __GameStateComponent__
 #pragma once
 
+/*
+An updatable component class that is to be extended and added directly to a gamestate, an example case
+would be for getting input from the player.
+*/
+
 class GameState;
 
 class GameStateComponent {
