@@ -16,6 +16,7 @@ void GameStateMachine::PushState(GameState* p_state) {
 void GameStateMachine::PopState() {
 	if (!m_gameStates.empty()) {
 		if (m_gameStates.back()->OnExit()) {
+			m_gameStates.back()->SetDeath();
 			delete m_gameStates.back();
 			m_gameStates.pop_back();
 		}
@@ -32,6 +33,7 @@ void GameStateMachine::ChangeState(GameState* p_state) {
 
 		//They're not the same so exit it then delete it
 		if (m_gameStates.back()->OnExit()) {
+			m_gameStates.back()->SetDeath();
 			delete m_gameStates.back();
 			m_gameStates.pop_back();
 		}

@@ -13,8 +13,8 @@ public:
 	~GameState();
 
 	void Clean();
-	void Update();
-	void Render();
+	void Update(double p_delta);
+	void Render(double p_delta);
 	
 	virtual bool OnEnter() = 0;
 	virtual bool OnExit() = 0;
@@ -26,6 +26,8 @@ public:
 	void AddGameObject(GameObject* p_gObject) {
 		m_gameObjects.push_back(p_gObject);
 	}
+
+	void SetDeath() { m_dying = true; }
 
 	GameObject* GetGameObjectWithId(std::string p_id);
 	
@@ -42,6 +44,8 @@ public:
 		return false;
 	};
 protected:
+	bool m_dying = false;
+
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<GameStateComponent*> m_stateComponents;
 };

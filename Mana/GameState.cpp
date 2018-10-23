@@ -1,20 +1,24 @@
 #include "GameState.h"
 
-void GameState::Update() {
+void GameState::Update(double p_delta) {
 	//update le game objects
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
-		m_gameObjects[i]->Update();
+		if (m_dying) break;
+		m_gameObjects[i]->Update(p_delta);
 	}
 	//Update le state components
 	for (size_t i = 0; i < m_stateComponents.size(); i++) {
-		m_stateComponents[i]->Update();
+		if (m_dying) break;
+		m_stateComponents[i]->Update(p_delta);
 	}
+
 }
 
-void GameState::Render() {
+void GameState::Render(double p_delta) {
 	//Render le game objects
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
-		m_gameObjects[i]->Draw();
+		if (m_dying) break;
+		m_gameObjects[i]->Draw(p_delta);
 	}
 }
 
@@ -28,6 +32,7 @@ GameObject* GameState::GetGameObjectWithId(std::string p_id) {
 			return m_gameObjects[i];
 		}
 	}
+	std::cout << "MANA:: Error:: GameState couldn't find game object with the id " << p_id.c_str() << std::endl;
 	return 0;
 }
 

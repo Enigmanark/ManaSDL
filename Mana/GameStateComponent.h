@@ -15,7 +15,7 @@ public:
 	
 	void SetParentGameState(GameState* p_state);
 	GameState* GetGameState();
-	virtual void Update() = 0;
+	virtual void Update(double p_delta) = 0;
 
 protected:
 	GameState* m_gameState;

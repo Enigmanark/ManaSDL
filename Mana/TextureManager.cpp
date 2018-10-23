@@ -13,6 +13,7 @@ bool TextureManager::Load(std::string p_fileName, std::string p_stringId, SDL_Re
 	SDL_Surface* t_surface = IMG_Load(p_fileName.c_str());
 
 	if (t_surface == 0) {
+		std::cout << "MANA:: Error: TextureManager failed to create surface for item " << p_stringId.c_str() << std::endl;
 		return false;
 	}
 
@@ -22,9 +23,11 @@ bool TextureManager::Load(std::string p_fileName, std::string p_stringId, SDL_Re
 
 	if (t_texture != 0) {
 		m_textureMap[p_stringId] = t_texture;
+		std::cout << "MANA:: Log:: TextureManager successfully created texture with id " << p_stringId.c_str() << std::endl;
 		return true;
 	}
 	else {
+		std::cout << "MANA:: Error: TextureManager failed to create texture for item " << p_stringId.c_str() << std::endl;
 		return false;
 	}
 }
@@ -35,17 +38,15 @@ Vector2D TextureManager::GetTextureSize(std::string p_id) {
 	return Vector2D((float)rect.w, (float)rect.h);
 }
 
-void TextureManager::Draw(std::string p_id, int p_x, int p_y, SDL_RendererFlip p_flip) {
+void TextureManager::Draw(std::string p_id, int p_x, int p_y, int p_width, int p_height, SDL_RendererFlip p_flip) {
 
 	SDL_Rect t_srcRect;
 	SDL_Rect t_destRect;
 
-	SDL_QueryTexture(m_textureMap[p_id], NULL, NULL, &t_srcRect.w, &t_srcRect.h);
-
 	t_srcRect.x = 0;
 	t_srcRect.y = 0;
-	t_destRect.w = t_srcRect.w;
-	t_destRect.h = t_srcRect.h;
+	t_destRect.w = t_srcRect.w = p_width;
+	t_destRect.h = t_srcRect.h = p_height;
 	t_destRect.x = p_x;
 	t_destRect.y = p_y;
 
@@ -56,8 +57,6 @@ void TextureManager::DrawRegion(std::string p_id, int p_srcX, int p_srcY, int p_
 
 	SDL_Rect t_srcRect;
 	SDL_Rect t_destRect;
-
-	//SDL_QueryTexture(m_textureMap[p_id], NULL, NULL, &t_srcRect.w, &t_srcRect.h);
 
 	t_srcRect.x = p_srcX;
 	t_srcRect.y = p_srcY;

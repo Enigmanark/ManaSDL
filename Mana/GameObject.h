@@ -18,9 +18,9 @@ public:
 	void Load(std::string p_filePath, std::string p_textureId);
 	void LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_startFrameX, int p_startFrameY);
 
-	virtual void Update();
-	virtual void Draw();
-	virtual void DrawRegion();
+	virtual void Update(double p_delta);
+	virtual void Draw(double p_delta);
+	virtual void DrawRegion(double p_delta);
 	virtual void Clean();
 
 	void SetPosition(float x, float y);

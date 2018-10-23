@@ -18,9 +18,9 @@ public:
 
 	bool Init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
-	void Render();
-	void Update();
-	void HandleEvents();
+	void Render(double p_delta);
+	void Update(double p_delta);
+	void HandleEvents(double p_delta);
 	void Clean();
 	void Quit();
 
@@ -36,6 +36,8 @@ private:
 
 	Game() {};
 	~Game() { delete s_Instance; }
+
+
 
 	int m_screenWidth;
 	int m_screenHeight;

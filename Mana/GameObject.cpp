@@ -33,6 +33,9 @@ GameObject::GameObject(std::string p_id) {
 void GameObject::Load(std::string p_filePath, std::string p_textureId) {
 	m_textureId = p_textureId;
 	TheTextureManager::Instance()->Load(p_filePath, p_textureId, TheGame::Instance()->GetRenderer());
+	Vector2D size = TheTextureManager::Instance()->GetTextureSize(p_textureId);
+	m_frameWidth = size.GetX();
+	m_frameHeight = size.GetY();
 }
 
 void GameObject::LoadSpriteSheet(std::string p_filePath, std::string p_textureId, int p_xFrames, int p_yFrames, int p_startFrameX, int p_startFrameY) {
@@ -45,8 +48,8 @@ void GameObject::LoadSpriteSheet(std::string p_filePath, std::string p_textureId
 	m_currentFrameY = p_startFrameY;
 }
 
-void GameObject::Update() {
-	//Todo
+void GameObject::Update(double p_delta) {
+	//Do nothing
 }
 
 void GameObject::Clean() {
@@ -57,11 +60,11 @@ void GameObject::Clean() {
 	delete m_bounds;
 }
 
-void GameObject::Draw() {
-	TheTextureManager::Instance()->Draw(m_id, GetPosition().GetX(), GetPosition().GetY());
+void GameObject::Draw(double p_delta) {
+	TheTextureManager::Instance()->Draw(m_textureId, GetPosition().GetX(), GetPosition().GetY(), m_frameWidth, m_frameHeight);
 }
 
-void GameObject::DrawRegion() {
+void GameObject::DrawRegion(double p_delta) {
 	int t_srcX = m_frameWidth * m_currentFrameX;
 	int t_srcY = m_frameHeight * m_currentFrameY;
 	int t_destX = m_position->GetX();

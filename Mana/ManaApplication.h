@@ -10,6 +10,7 @@ public:
 	void Run();
 
 private:
-
+	double m_deltaTime;
+	Uint64 m_now, m_last;
 	int m_frameStart, m_frameTime, m_delayTime, m_fps;
 };

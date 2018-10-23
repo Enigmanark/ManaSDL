@@ -61,12 +61,22 @@ bool Game::InitSystems() {
 	return true;
 }
 
-void Game::HandleEvents() {
+void Game::HandleEvents(double p_delta) {
 	//Handle le input events
 	InputHandler::Instance()->Update();
 }
 
-void Game::Render() {
+void Game::Update(double p_delta) {
+	//Update le gamestate
+	GameState* currentState = m_gameStateMachine->GetCurrentState();
+	if (currentState == 0) {
+		std::cout << "MANA:: CRITICAL ERROR:: There is no current state. Not updating. Quitting..." << std::endl;
+		Quit();
+	}
+	else currentState->Update(p_delta);
+}
+
+void Game::Render(double p_delta) {
 	//Clear le screen
 	SDL_RenderClear(m_renderer);
 
@@ -75,7 +85,7 @@ void Game::Render() {
 	if (currentState == 0) {
 		std::cout << "MANA:: CRITICAL ERROR:: There is no current state. Not rendering. Quitting..." << std::endl;
 		Quit();
-	}else currentState->Render();
+	}else currentState->Render(p_delta);
 
 	//Present le stuff
 	SDL_RenderPresent(m_renderer);
@@ -99,13 +109,4 @@ GameStateMachine* Game::GetStateMachine() {
 
 SDL_Renderer* Game::GetRenderer() {
 	return m_renderer;
-}
-
-void Game::Update() {
-	//Update le gamestate
-	GameState* currentState = m_gameStateMachine->GetCurrentState();
-	if (currentState == 0) {
-		std::cout << "MANA:: CRITICAL ERROR:: There is no current state. Not updating. Quitting..." << std::endl;
-		Quit();
-	} else currentState->Update();
 }
