@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "Vector2D.h"
+#include "TextureManager.h"
 #ifndef __GameObject__
 #define __GameObject__
 
@@ -28,6 +29,9 @@ public:
 
 	SDL_Rect* GetBounds();
 	bool DoBoundsCollide(SDL_Rect* p_rect);
+
+	int GetTextureWidth() { return TextureManager::Instance()->GetTextureSize(m_textureId).GetX(); }
+	int GetTextureHeight() { return TextureManager::Instance()->GetTextureSize(m_textureId).GetY(); }
 
 	int GetFrameWidth() { return m_frameWidth; }
 	int GetFrameHeight() { return m_frameHeight; }
