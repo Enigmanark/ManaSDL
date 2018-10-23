@@ -38,7 +38,7 @@ Vector2D TextureManager::GetTextureSize(std::string p_id) {
 	return Vector2D((float)rect.w, (float)rect.h);
 }
 
-void TextureManager::Draw(std::string p_id, int p_x, int p_y, int p_width, int p_height, SDL_RendererFlip p_flip) {
+void TextureManager::Draw(std::string p_id, float p_x, float p_y, int p_width, int p_height, SDL_RendererFlip p_flip) {
 
 	SDL_Rect t_srcRect;
 	SDL_Rect t_destRect;
@@ -53,7 +53,8 @@ void TextureManager::Draw(std::string p_id, int p_x, int p_y, int p_width, int p
 	SDL_RenderCopyEx(TheGame::Instance()->GetRenderer(), m_textureMap[p_id], &t_srcRect, &t_destRect, 0, 0, p_flip);
 }
 
-void TextureManager::DrawRegion(std::string p_id, int p_srcX, int p_srcY, int p_width, int p_height, int p_destX, int p_destY, SDL_RendererFlip p_flip) {
+void TextureManager::DrawRegion(std::string p_id, float p_srcX, float p_srcY, int p_width, int p_height, float p_destX, float p_destY,
+	SDL_RendererFlip p_flip) {
 
 	SDL_Rect t_srcRect;
 	SDL_Rect t_destRect;

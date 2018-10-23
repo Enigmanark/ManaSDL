@@ -22,7 +22,7 @@ void ManaApplication::Run() {
 		//calculate delta
 		m_last = m_now;
 		m_now = SDL_GetPerformanceCounter();
-		m_deltaTime = (double)((m_now - m_last) * 1000 / (double)SDL_GetPerformanceFrequency());
+		m_deltaTime = (double)((m_now - m_last) / (double)SDL_GetPerformanceFrequency());
 		
 		//Start of frame
 		m_frameStart = SDL_GetTicks();

@@ -8,8 +8,8 @@ class Sprite : public GameObject {
 
 public:
 	Sprite(std::string p_id) { GameObject::Init(p_id); }
-	virtual void Draw() { 
-		GameObject::Draw(); 
+	virtual void Draw(double p_delta) { 
+		GameObject::Draw(p_delta); 
 	}
 };
 
