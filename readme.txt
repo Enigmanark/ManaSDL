@@ -30,3 +30,8 @@ backgrounds and whatnot. To add your own just create your own just extend "GameO
 The difference being that Sprites have a few more virtual functions that you can override such as more
 control over drawing them whereas you cannot control how you draw a regular GameObject other than
 drawing from a regular texture or drawing a TextureRegion from it.
+
+There are also GameStateComponents that are managers that are attached to the gamestate that only have
+one virtual overridable function, Update() that is generally used to get gameobjects and process them.
+For example you could have an InputComponent that handles input and a BulletManagerComponent that handles
+the creation and deletion of bullets in the gamestate.
