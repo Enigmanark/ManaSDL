@@ -36,6 +36,16 @@ GameObject* GameState::GetGameObjectWithId(std::string p_id) {
 	return 0;
 }
 
+GameStateComponent* GameState::GetComponentWithId(std::string p_id) {
+	for (size_t i = 0; i < m_stateComponents.size(); i++) {
+		if (m_stateComponents[i]->GetID() == p_id) {
+			return m_stateComponents[i];
+		}
+	}
+	std::cout << "MANA:: Error:: GameState couldn't find state component with the id " << p_id.c_str() << std::endl;
+	return 0;
+}
+
 GameState::~GameState() {
 	Clean();
 }

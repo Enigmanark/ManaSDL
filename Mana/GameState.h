@@ -31,6 +31,8 @@ public:
 
 	GameObject* GetGameObjectWithId(std::string p_id);
 	
+	GameStateComponent* GetComponentWithId(std::string p_id);
+
 	std::vector<GameObject*> GetGameObjects();
 
 	virtual std::string GetStateID() = 0;
